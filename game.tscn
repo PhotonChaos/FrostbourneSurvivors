@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dna6cjc6sk84x"]
+
+[ext_resource type="PackedScene" uid="uid://cxroqn4l8kkms" path="res://Actors/enemy.tscn" id="2_q8byv"]
+
+[node name="Wilds" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("2_q8byv")]
+position = Vector2(1375, 541)
+speed = 100
