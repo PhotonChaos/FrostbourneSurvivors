@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://pso4du5pld81"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_eok7b"]
+[ext_resource type="Texture2D" uid="uid://b4r4aryq1vu8b" path="res://Textures/icon.svg" id="2_jbaww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjdv4"]
+size = Vector2(26, 26)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_eok7b")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, 5.96046e-08)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_jbaww")
+
+[node name="EnvironmentCollider" type="CollisionShape2D" parent="."]
+editor_description = "This handles collision with stuff like walls. The player ain't a ghost!"
+shape = SubResource("RectangleShape2D_jjdv4")

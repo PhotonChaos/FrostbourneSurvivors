@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var starting_health = 10
@@ -10,6 +11,8 @@ extends CharacterBody2D
 
 var target_velocity = Vector2.ZERO
 
+var knife = preload("res://Scenes/flame_knife.tscn")
+
 func hit(damage: int) -> void:
 	if itime > 0: return
 	
@@ -21,9 +24,25 @@ func hit(damage: int) -> void:
 		health = 0
 		print("GAME OVER")
 
+func shoot():
+	for i in range(30):
+		var angle = randf_range(0, 2*PI)
+		var dir = Vector2.from_angle(angle)
+		var proj: Projectile = knife.instantiate()
+		
+		proj.damage_source = Projectile.DamageSource.PLAYER
+		proj.global_position = global_position + dir * 5
+		proj.rotation = angle
+		
+		get_parent().add_child(proj)
+		
+
 func _process(delta: float) -> void:
 	if itime > 0:
 		itime = max(0, itime - delta)
+		
+	if Input.is_action_just_pressed("attack"):
+		shoot()
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -42,7 +61,5 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		direction = direction.normalized() * speed
 
-	velocity.x = direction.x
-	velocity.y = direction.y
+	position += direction * delta
 
-	move_and_slide()
