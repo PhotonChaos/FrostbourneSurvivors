@@ -1,10 +1,10 @@
 class_name Projectile
 extends Area2D
 
-var damage_source: HurtBox.DamageSource
-var damage: int
-var speed: float
+@export var damage: int
+@export var speed: float
 
+var damage_source: HurtBox.DamageSource
 var velocity: Vector2 = Vector2.ZERO
 
 func should_damage(body: Node2D):

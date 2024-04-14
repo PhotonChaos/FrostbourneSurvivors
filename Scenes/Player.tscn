@@ -7,6 +7,9 @@
 size = Vector2(26, 26)
 
 [node name="Player" type="CharacterBody2D"]
+editor_description = "The collision mask and layer refer to the EnvironmentCollider child of Player, and not the hitbox."
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_eok7b")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -17,3 +20,4 @@ texture = ExtResource("2_jbaww")
 [node name="EnvironmentCollider" type="CollisionShape2D" parent="."]
 editor_description = "This handles collision with stuff like walls. The player ain't a ghost!"
 shape = SubResource("RectangleShape2D_jjdv4")
+debug_color = Color(0, 0.6, 0.701961, 0.235294)

@@ -1,5 +1,5 @@
 class_name HurtBox
-extends Node2D
+extends Area2D
 
 enum DamageSource {
 	PLAYER,

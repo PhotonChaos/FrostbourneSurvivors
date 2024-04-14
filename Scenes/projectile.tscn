@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://disk8woc5mrrd"]
+
+[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_gk34s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cagp2"]
+size = Vector2(13, 4)
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_gk34s")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cagp2")
+debug_color = Color(1, 0, 0.121569, 0.211765)
