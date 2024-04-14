@@ -12,14 +12,16 @@ config_version=5
 
 config/name="Frostebourne Survivor"
 run/main_scene="res://game.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Textures/icon.svg"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [editor]
 
