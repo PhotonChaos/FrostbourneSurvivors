@@ -1,8 +1,14 @@
+class_name HurtBox
 extends Node2D
 
+enum DamageSource {
+	PLAYER,
+	ENEMY
+}
 
 @export var max_health = 10
 @export var max_inv_time = 1.0
+@export var damage_source: DamageSource = DamageSource.ENEMY
 
 @onready var itime = 0
 @onready var health = max_health

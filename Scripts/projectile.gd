@@ -1,18 +1,16 @@
 class_name Projectile
 extends Area2D
 
-
-enum DamageSource {
-	PLAYER,
-	ENEMY
-}
-
-
-var damage_source: DamageSource
+var damage_source: HurtBox.DamageSource
 var damage: int
 var speed: float
 
 var velocity: Vector2 = Vector2.ZERO
+
+func should_damage(body: Node2D):
+	var hb = body.get_node("HurtBox") as HurtBox
+	
+	return hb and hb.damage_source != damage_source
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +22,5 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group("player") and damage_source == DamageSource.ENEMY:
-		body.hit(damage)
-	elif damage_source == DamageSource.PLAYER and body.is_in_group("nightmares"):
-		print("KILL")
+	if should_damage(body):
+		body.get_node("HurtBox").hurt()

@@ -10,19 +10,7 @@ extends CharacterBody2D
 @onready var itime = inv_time
 
 var target_velocity = Vector2.ZERO
-
 var knife = preload("res://Scenes/flame_knife.tscn")
-
-func hit(damage: int) -> void:
-	if itime > 0: return
-	
-	health -= damage
-	print("Hit! Remaining health: %d" % health)
-	itime += inv_time
-	
-	if health <= 0:
-		health = 0
-		print("GAME OVER")
 
 func shoot():
 	for i in range(30):
@@ -30,12 +18,12 @@ func shoot():
 		var dir = Vector2.from_angle(angle)
 		var proj: Projectile = knife.instantiate()
 		
-		proj.damage_source = Projectile.DamageSource.PLAYER
+		proj.damage_source = HurtBox.DamageSource.PLAYER
 		proj.global_position = global_position + dir * 5
 		proj.rotation = angle
 		
 		get_parent().add_child(proj)
-		
+
 
 func _process(delta: float) -> void:
 	if itime > 0:
