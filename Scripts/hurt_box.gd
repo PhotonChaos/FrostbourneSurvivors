@@ -1,6 +1,8 @@
 class_name HurtBox
 extends Area2D
 
+signal health_depleted
+
 enum DamageSource {
 	PLAYER,
 	ENEMY
@@ -21,8 +23,8 @@ func hit(damage: int) -> void:
 	itime += max_inv_time
 	
 	if health <= 0:
-		health = 0
-		print("GAME OVER")
+		health = 0  # TODO: This can be eliminated to possibly handle overkill damage
+		health_depleted.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

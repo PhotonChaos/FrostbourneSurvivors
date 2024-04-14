@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://pso4du5pld81"]
+[gd_scene load_steps=5 format=3 uid="uid://pso4du5pld81"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_eok7b"]
 [ext_resource type="Texture2D" uid="uid://b4r4aryq1vu8b" path="res://Textures/icon.svg" id="2_jbaww"]
+[ext_resource type="PackedScene" uid="uid://kkq4d6tpedy7" path="res://Scenes/hurt_box.tscn" id="3_ybmhl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjdv4"]
 size = Vector2(26, 26)
@@ -21,3 +22,7 @@ texture = ExtResource("2_jbaww")
 editor_description = "This handles collision with stuff like walls. The player ain't a ghost!"
 shape = SubResource("RectangleShape2D_jjdv4")
 debug_color = Color(0, 0.6, 0.701961, 0.235294)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_ybmhl")]
+
+[connection signal="health_depleted" from="HurtBox" to="." method="_on_hurt_box_health_depleted"]

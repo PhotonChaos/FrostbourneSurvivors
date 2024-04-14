@@ -24,6 +24,14 @@ func shoot():
 		
 		get_parent().add_child(proj)
 
+# ###########
+# Signals
+func _on_hurt_box_health_depleted():
+	print("GAME OVER")
+
+
+# ###########
+# Builtins
 
 func _process(delta: float) -> void:
 	if itime > 0:
@@ -50,4 +58,3 @@ func _physics_process(delta: float) -> void:
 		direction = direction.normalized() * speed
 
 	position += direction * delta
-

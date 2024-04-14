@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxroqn4l8kkms"]
+[gd_scene load_steps=5 format=3 uid="uid://cxroqn4l8kkms"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_5vu6y"]
 [ext_resource type="Texture2D" uid="uid://b00h3rpj7w5dk" path="res://Textures/nightmare_bunny.png" id="2_1hh1p"]
+[ext_resource type="PackedScene" uid="uid://kkq4d6tpedy7" path="res://Scenes/hurt_box.tscn" id="3_pnbhy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_02smd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8ka"]
+size = Vector2(15, 13)
 
 [node name="Enemy" type="Area2D"]
 script = ExtResource("1_5vu6y")
@@ -11,7 +13,10 @@ script = ExtResource("1_5vu6y")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1hh1p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_02smd")
+[node name="HurtBox" parent="." instance=ExtResource("3_pnbhy")]
+max_health = 3
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="AttackBox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_mj8ka")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

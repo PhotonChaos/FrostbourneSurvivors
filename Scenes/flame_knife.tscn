@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://xcn3fqpy2c2b"]
+[gd_scene load_steps=5 format=3 uid="uid://xcn3fqpy2c2b"]
 
 [ext_resource type="Texture2D" uid="uid://bri7u5js467xo" path="res://Textures/Effects/GlowKnife.png" id="1_7m246"]
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_22qlo"]
 [ext_resource type="PackedScene" uid="uid://disk8woc5mrrd" path="res://Scenes/projectile.tscn" id="3_f1kw7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7q6s"]
+resource_local_to_scene = true
+size = Vector2(13, 4)
 
 [node name="FlameKnife" type="Node2D"]
 script = ExtResource("1_22qlo")
@@ -16,5 +20,6 @@ speed = 10.0
 
 [node name="Hurtbox" parent="Projectile" index="0"]
 position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_f7q6s")
 
 [editable path="Projectile"]
