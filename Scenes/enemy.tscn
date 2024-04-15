@@ -20,3 +20,5 @@ max_health = 3
 position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_mj8ka")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="health_depleted" from="HurtBox" to="." method="_on_hurt_box_health_depleted"]

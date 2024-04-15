@@ -7,6 +7,7 @@ extends Node2D
 @onready var player: Player = $Player
 
 var bunni_prefab = preload("res://Scenes/enemy.tscn")
+var time = 0
 
 # TODO: Require enemy type. Just does bunnies for now.
 func spawn_enemy(location: Vector2) -> Node:
@@ -20,19 +21,16 @@ func spawn_wave(count: int) -> void:
 		var spawn_pos = player.global_position + Vector2.from_angle(randf_range(0, 2 * PI)).normalized() * spawn_distance
 		spawn_enemy(spawn_pos)
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	pass # Replace with function body.
 
-
-var time = 0
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
 	
 	if time > 10:
 		time -= 10
 		spawn_wave(12)
-	
 
+func _on_projectile_boundary_area_exited(area: Area2D) -> void:
+	area.queue_free()

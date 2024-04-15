@@ -21,6 +21,8 @@ func shoot():
 		proj.damage_source = HurtBox.DamageSource.PLAYER
 		proj.global_position = global_position + dir * 5
 		proj.rotation = angle
+		proj.damage = 3
+		proj.speed = 30
 		
 		get_parent().add_child(proj)
 
