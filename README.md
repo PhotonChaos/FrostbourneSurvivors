@@ -5,4 +5,4 @@ A game about surviving in the Frostbourne Wilds. This is from the Remagica TTRPG
 |-----------------|-----------------------------------------------------------------|
 | 1               | Damage objects such as Hitboxes, projectile hitboxes, etc.      |
 | 2               | Colliders for interacting with solid objects in the environment |
-| 3               | Collider for detecting when projectiles go out of bounds        |
+| 3               | Objects which should be deleted when they go out of bounds      |
