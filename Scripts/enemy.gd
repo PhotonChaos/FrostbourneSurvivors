@@ -30,6 +30,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.hit(attack)
 
+func _exit_tree() -> void:
+	print_rich("[color=pink]ENEMY SLAIN[/color]")
 
 func _on_hurt_box_health_depleted() -> void:
 	queue_free()

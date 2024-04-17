@@ -1,20 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dna6cjc6sk84x"]
+[gd_scene load_steps=12 format=3 uid="uid://dna6cjc6sk84x"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_yvj8s"]
 [ext_resource type="PackedScene" uid="uid://pso4du5pld81" path="res://Scenes/Player.tscn" id="2_3a5p6"]
-[ext_resource type="PackedScene" uid="uid://cxroqn4l8kkms" path="res://Scenes/enemy.tscn" id="2_q8byv"]
+[ext_resource type="Shader" path="res://Shaders/arrow_reveal.gdshader" id="3_4ork1"]
+[ext_resource type="Texture2D" uid="uid://b4r4aryq1vu8b" path="res://Textures/icon.svg" id="4_xya6g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fxs7"]
-size = Vector2(690, 396)
+size = Vector2(683, 396)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_aio13"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqgs4"]
+size = Vector2(7, 365)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3srdy"]
+size = Vector2(654, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h0s4"]
+size = Vector2(647, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqxek"]
+size = Vector2(7, 360)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbq4r"]
+shader = ExtResource("3_4ork1")
+shader_parameter/startTime = 5.0
 
 [node name="Wilds" type="Node2D"]
 script = ExtResource("1_yvj8s")
 spawn_distance = 100
 waves = Array[int]([2, 4, 6, 8, 10])
-
-[node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("2_q8byv")]
-position = Vector2(308, 196)
-speed = 100
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_3a5p6")]
 position = Vector2(302, 145)
@@ -23,12 +39,39 @@ position = Vector2(302, 145)
 
 [node name="ProjectileBoundary" type="Area2D" parent="."]
 editor_description = "This shouldn't be present on any layer. It should observe objects on layer 3."
+visible = false
 collision_layer = 0
-collision_mask = 4
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileBoundary"]
-position = Vector2(320, 180)
+position = Vector2(323.5, 180)
 shape = SubResource("RectangleShape2D_5fxs7")
 debug_color = Color(0.964706, 0, 0.486275, 0.0588235)
+
+[node name="PlayerBoundary" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_aio13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(-3.5, 182.5)
+shape = SubResource("RectangleShape2D_gqgs4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(320, -2.5)
+shape = SubResource("RectangleShape2D_3srdy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(323.5, 362.5)
+shape = SubResource("RectangleShape2D_4h0s4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(643.5, 180)
+shape = SubResource("RectangleShape2D_hqxek")
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xbq4r")
+position = Vector2(119, 233)
+texture = ExtResource("4_xya6g")
 
 [connection signal="area_exited" from="ProjectileBoundary" to="." method="_on_projectile_boundary_area_exited"]

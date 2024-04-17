@@ -19,7 +19,6 @@ func hit(damage: int) -> void:
 	if itime > 0: return
 	
 	health -= damage
-	print("Hit! Remaining health: %d" % health)
 	itime += max_inv_time
 	
 	if health <= 0:

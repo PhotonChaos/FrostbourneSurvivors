@@ -28,9 +28,9 @@ func _ready():
 func _process(delta):
 	time += delta
 	
-	if time > 10:
-		time -= 10
+	if time > 3:
+		time -= 3
 		spawn_wave(12)
 
 func _on_projectile_boundary_area_exited(area: Area2D) -> void:
-	area.queue_free()
+	area.get_parent().queue_free()

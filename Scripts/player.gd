@@ -1,13 +1,14 @@
 class_name Player
 extends CharacterBody2D
 
-@export var starting_health = 10
-@export var speed = 140
-@export var attack_damage = 1
-@export var inv_time = 1.0
+@export var starting_health: int = 10
+@export var speed: int = 140
+@export var attack_damage: int = 1
+@export var inv_time: float = 1.0
 
 @onready var health = starting_health
 @onready var itime = inv_time
+@onready var xp = 0
 
 var target_velocity = Vector2.ZERO
 var knife = preload("res://Scenes/flame_knife.tscn")
@@ -16,15 +17,17 @@ func shoot():
 	for i in range(30):
 		var angle = randf_range(0, 2*PI)
 		var dir = Vector2.from_angle(angle)
-		var proj: Projectile = knife.instantiate()
+		var proj_node = knife.instantiate()
+		var proj: Projectile = proj_node.get_node(^"Projectile")
+
+		proj_node.global_position = global_position + dir * 10
+		proj_node.rotation = angle
 		
 		proj.damage_source = HurtBox.DamageSource.PLAYER
-		proj.global_position = global_position + dir * 5
-		proj.rotation = angle
 		proj.damage = 3
 		proj.speed = 30
 		
-		get_parent().add_child(proj)
+		get_parent().add_child(proj_node)
 
 # ###########
 # Signals
@@ -53,10 +56,17 @@ func _physics_process(delta: float) -> void:
 		direction.x -= 1
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
-
+	
+	var final_speed = speed
+	
+	if Input.is_action_pressed("sneak"):
+		final_speed = final_speed / 2
+	
 	# IDEA: We can avoid normalizing here by testing if x*y != 0
 	# then if true, set both to 1/sqrt(2) (which is ~0.7071067)
 	if direction != Vector2.ZERO:
-		direction = direction.normalized() * speed
+		direction = direction.normalized() * final_speed
 
-	position += direction * delta
+	velocity = direction
+	
+	move_and_slide()

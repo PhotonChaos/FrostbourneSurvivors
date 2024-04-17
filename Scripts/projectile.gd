@@ -1,5 +1,5 @@
 class_name Projectile
-extends Node2D
+extends Area2D
 
 @export var damage: int
 @export var speed: float
@@ -8,24 +8,19 @@ extends Node2D
 var damage_source: HurtBox.DamageSource
 var velocity: Vector2 = Vector2.ZERO
 
-func should_damage(body: Node2D):
-	var hb = body.get_node("HurtBox") as HurtBox
-	print(hb)
-	return hb and hb.damage_source != damage_source
+@onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity = Vector2.from_angle(rotation) * speed
-
+	velocity = Vector2.from_angle(parent.rotation) * speed
 
 func _physics_process(delta):
-	position += velocity * delta
-
+	parent.position += velocity * delta
 
 func _on_area_entered(area: Area2D) -> void:
-	if should_damage(area):
-		print(area)
-		area.get_node("HurtBox").hit(damage)
-	
+	# Use collisoin layers to make sure this is only called
+	# when the projectile hits the correct target
+	area.hit(damage)
+
 	if die_on_hit:
-		queue_free()
+		get_parent().queue_free()
