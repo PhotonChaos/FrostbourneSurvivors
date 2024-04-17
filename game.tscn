@@ -23,7 +23,7 @@ size = Vector2(7, 360)
 
 [node name="Wilds" type="Node2D"]
 script = ExtResource("1_yvj8s")
-spawn_distance = 400
+spawn_distance = 150
 waves = Array[int]([2, 4, 6, 8, 10])
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_3a5p6")]

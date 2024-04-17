@@ -16,13 +16,33 @@ extends Area2D
 # @export var type = EnemyType.BUNNY;
 
 @onready var player = get_tree().get_first_node_in_group("player")
+@onready var sprite = $Sprite2D
+@onready var hurtbox: HurtBox = $HurtBox
+@onready var hitbox: CollisionShape2D = $AttackBox
+@onready var animations = $AnimatedSprite2D
 
+var is_alive = true
+
+func set_alive(status: bool) -> void:
+	## Sets the hitboxes and sprite visibility of the entity. True for on, False for off.
+	is_alive = status
+	
+	hurtbox.monitoring = status
+	hurtbox.set_deferred("monitorable", status)
+	sprite.visible = status
+	
+	hitbox.set_deferred("disabled", !status)
+	animations.visible = !status
 
 func _ready() -> void:
+	set_alive(false)
+	animations.play("spawn")
 	add_to_group("nightmares")
 
 
 func _physics_process(delta: float) -> void:
+	if not is_alive: return
+	
 	position += (player.get_position() - position).normalized() * speed * delta
 
 
@@ -34,4 +54,12 @@ func _exit_tree() -> void:
 	print_rich("[color=pink]ENEMY SLAIN[/color]")
 
 func _on_hurt_box_health_depleted() -> void:
-	queue_free()
+	set_alive(false)
+	animations.play("death")
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animations.animation == &"spawn":
+		set_alive(true)
+	else:
+		queue_free()
