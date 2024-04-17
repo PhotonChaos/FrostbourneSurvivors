@@ -1,0 +1,64 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bnvytygy37kib"]
+
+[ext_resource type="Texture2D" uid="uid://co7gi3viis7ku" path="res://Textures/Animations/nightmare_bunny_spawn/sprite_0.png" id="1_sb6yi"]
+[ext_resource type="Texture2D" uid="uid://dg2v2l20jh8vl" path="res://Textures/Animations/nightmare_bunny_spawn/sprite_1.png" id="2_x3d6h"]
+[ext_resource type="Texture2D" uid="uid://diub7gtsameaq" path="res://Textures/Animations/nightmare_bunny_spawn/sprite_2.png" id="3_2p4l4"]
+[ext_resource type="Texture2D" uid="uid://100dhq0gklvn" path="res://Textures/Animations/nightmare_bunny_spawn/sprite_3.png" id="4_a47wy"]
+[ext_resource type="Texture2D" uid="uid://6vdi37hcmsfc" path="res://Textures/Animations/nightmare_bunny_spawn/sprite_4.png" id="5_vuleb"]
+[ext_resource type="Texture2D" uid="uid://7kn3mmawbmd0" path="res://Textures/Animations/nightmare_bunny_spawn/sprite_5.png" id="6_4xa1j"]
+[ext_resource type="Texture2D" uid="uid://chfig3qqjqp11" path="res://Textures/Animations/nightmare_bunny_spawn/sprite_6.png" id="7_3hkgp"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3hkgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4xa1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vuleb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a47wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2p4l4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x3d6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_sb6yi")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sb6yi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x3d6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2p4l4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a47wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vuleb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4xa1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3hkgp")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 24.0
+}]
