@@ -25,6 +25,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.235294)
 
 [node name="HurtBox" parent="." instance=ExtResource("3_ybmhl")]
 editor_description = "Player exists on layer 1, but looks at layer 3 for environment collision"
-collision_mask = 4
+collision_mask = 0
 
 [connection signal="health_depleted" from="HurtBox" to="." method="_on_hurt_box_health_depleted"]
+[connection signal="health_updated" from="HurtBox" to="." method="_on_hurt_box_health_updated"]

@@ -9,6 +9,7 @@ extends Area2D
 #	JELLYFISH
 #}
 
+var pickup_prefab = preload("res://Scenes/pickup.tscn")
 
 @export var speed = 40
 @export var health = 10
@@ -44,11 +45,6 @@ func _physics_process(delta: float) -> void:
 	
 	position += (player.get_position() - position).normalized() * speed * delta
 
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		body.hit(attack)
-
 func _exit_tree() -> void:
 	print_rich("[color=pink]ENEMY SLAIN[/color]")
 
@@ -61,4 +57,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animations.animation == &"spawn":
 		set_alive(true)
 	else:
+		var xp_orb = pickup_prefab.instantiate()
+		xp_orb.global_position = global_position
+		get_parent().add_child(xp_orb)
 		queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	area.hit(attack)

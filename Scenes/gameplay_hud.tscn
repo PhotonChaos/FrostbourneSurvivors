@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmh5img4tdqc1"]
+
+[ext_resource type="Script" path="res://Scripts/gameplay_hud.gd" id="1_2gryq"]
+[ext_resource type="FontFile" uid="uid://crij2k3sbj5ko" path="res://UI/Fonts/SparklyFontRegular-zyA3.ttf" id="1_nucyl"]
+[ext_resource type="Texture2D" uid="uid://co674v4xwrakv" path="res://Textures/HeartPickup.png" id="1_uq7e6"]
+[ext_resource type="Texture2D" uid="uid://c7bjncvhvpmhn" path="res://Textures/ExperiencePickup.png" id="2_i1m3w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qnf5d"]
+font = ExtResource("1_nucyl")
+font_size = 32
+
+[node name="GameplayHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gryq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 51.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0
+"
+label_settings = SubResource("LabelSettings_qnf5d")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_uq7e6")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Spacer" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "  "
+label_settings = SubResource("LabelSettings_qnf5d")
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_qnf5d")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_i1m3w")
+expand_mode = 2
+stretch_mode = 4

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dna6cjc6sk84x"]
+[gd_scene load_steps=10 format=3 uid="uid://dna6cjc6sk84x"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_yvj8s"]
 [ext_resource type="PackedScene" uid="uid://pso4du5pld81" path="res://Scenes/Player.tscn" id="2_3a5p6"]
+[ext_resource type="PackedScene" uid="uid://dmh5img4tdqc1" path="res://Scenes/gameplay_hud.tscn" id="3_3lnfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fxs7"]
 size = Vector2(683, 396)
@@ -21,10 +22,12 @@ size = Vector2(647, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqxek"]
 size = Vector2(7, 360)
 
-[node name="Wilds" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_yvj8s")
 spawn_distance = 150
 waves = Array[int]([2, 4, 6, 8, 10])
+
+[node name="GameplayHud" parent="." instance=ExtResource("3_3lnfy")]
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_3a5p6")]
 position = Vector2(302, 145)
@@ -63,4 +66,7 @@ shape = SubResource("RectangleShape2D_4h0s4")
 position = Vector2(643.5, 180)
 shape = SubResource("RectangleShape2D_hqxek")
 
+[connection signal="game_over" from="Player" to="GameplayHud" method="_on_player_game_over"]
+[connection signal="health_changed" from="Player" to="GameplayHud" method="_on_player_health_changed"]
+[connection signal="xp_changed" from="Player" to="GameplayHud" method="_on_player_xp_changed"]
 [connection signal="area_exited" from="ProjectileBoundary" to="." method="_on_projectile_boundary_area_exited"]

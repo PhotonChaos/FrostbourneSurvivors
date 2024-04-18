@@ -1,6 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
+signal game_over
+signal health_changed(health: int)
+signal xp_changed(xp: int)
+
 @export var starting_health: int = 10
 @export var speed: int = 140
 @export var attack_damage: int = 1
@@ -29,14 +33,25 @@ func shoot():
 		
 		get_parent().add_child(proj_node)
 
+func gain_xp(experience: int) -> void:
+	if experience >= 0:
+		xp += experience
+		xp_changed.emit(xp)
+
 # ###########
 # Signals
 func _on_hurt_box_health_depleted():
-	print("GAME OVER")
+	game_over.emit()
 
+
+func _on_hurt_box_health_updated(health: int) -> void:
+	health_changed.emit(health)
 
 # ###########
 # Builtins
+
+func _ready() -> void:
+	xp_changed.emit(xp)
 
 func _process(delta: float) -> void:
 	if itime > 0:
@@ -68,5 +83,5 @@ func _physics_process(_delta: float) -> void:
 		direction = direction.normalized() * final_speed
 
 	velocity = direction
-	
 	move_and_slide()
+
