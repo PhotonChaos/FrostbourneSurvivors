@@ -21,7 +21,7 @@ extends Area2D
 @onready var hitbox: CollisionShape2D = $AttackBox
 @onready var animations = $AnimatedSprite2D
 
-var is_alive = true
+var is_alive = false
 
 func set_alive(status: bool) -> void:
 	## Sets the hitboxes and sprite visibility of the entity. True for on, False for off.
@@ -35,7 +35,6 @@ func set_alive(status: bool) -> void:
 	animations.visible = !status
 
 func _ready() -> void:
-	set_alive(false)
 	animations.play("spawn")
 	add_to_group("nightmares")
 
