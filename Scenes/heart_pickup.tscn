@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://wbjmx2fd4nvr" path="res://Textures/Animations/HP/heart_pickup.tres" id="2_bgll6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nqoxe"]
-radius = 5.0
+radius = 25.0
 
 [node name="HeartPickup" type="Area2D"]
 collision_layer = 8

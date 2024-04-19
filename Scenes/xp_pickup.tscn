@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://du8xc7g23rcal" path="res://Textures/Animations/XP/xp_pickup_anim.tres" id="2_6ebjs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b0epg"]
-radius = 7.0
+radius = 25.0
 
 [node name="Pickup" type="Area2D"]
 collision_layer = 8
