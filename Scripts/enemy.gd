@@ -9,7 +9,8 @@ extends Area2D
 #	JELLYFISH
 #}
 
-var pickup_prefab = preload("res://Scenes/pickup.tscn")
+var xp_pickup_prefab = preload("res://Scenes/xp_pickup.tscn")
+var hp_pickup_prefab = preload("res://Scenes/heart_pickup.tscn")
 
 @export var speed = 40
 @export var health = 10
@@ -46,7 +47,8 @@ func _physics_process(delta: float) -> void:
 	position += (player.get_position() - position).normalized() * speed * delta
 
 func _exit_tree() -> void:
-	print_rich("[color=pink]ENEMY SLAIN[/color]")
+	pass
+	#print_rich("[color=pink]ENEMY SLAIN[/color]")
 
 func _on_hurt_box_health_depleted() -> void:
 	set_alive(false)
@@ -57,9 +59,15 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animations.animation == &"spawn":
 		set_alive(true)
 	else:
-		var xp_orb = pickup_prefab.instantiate()
-		xp_orb.global_position = global_position
-		get_parent().add_child(xp_orb)
+		var pickup: Pickup
+		
+		if randf() < 0.05:
+			pickup = hp_pickup_prefab.instantiate()
+		else:
+			pickup = xp_pickup_prefab.instantiate()
+
+		pickup.global_position = global_position
+		get_parent().add_child(pickup)
 		queue_free()
 
 

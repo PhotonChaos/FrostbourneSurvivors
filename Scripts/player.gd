@@ -14,6 +14,7 @@ signal xp_changed(xp: int)
 @onready var itime = inv_time
 @onready var xp = 0
 
+var level = 0
 var target_velocity = Vector2.ZERO
 var knife = preload("res://Scenes/flame_knife.tscn")
 
@@ -29,7 +30,7 @@ func shoot():
 		
 		proj.damage_source = HurtBox.DamageSource.PLAYER
 		proj.damage = 3
-		proj.speed = 30
+		proj.speed = 70
 		
 		get_parent().add_child(proj_node)
 
