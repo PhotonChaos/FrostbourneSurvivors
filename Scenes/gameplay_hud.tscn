@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmh5img4tdqc1"]
+[gd_scene load_steps=7 format=3 uid="uid://dmh5img4tdqc1"]
 
 [ext_resource type="Script" path="res://Scripts/gameplay_hud.gd" id="1_2gryq"]
+[ext_resource type="Theme" uid="uid://cjnv40jx5s0rt" path="res://UI/Themes/game_theme.tres" id="1_ica7q"]
 [ext_resource type="FontFile" uid="uid://crij2k3sbj5ko" path="res://UI/Fonts/SparklyFontRegular-zyA3.ttf" id="1_nucyl"]
 [ext_resource type="Texture2D" uid="uid://co674v4xwrakv" path="res://Textures/HeartPickup.png" id="1_uq7e6"]
 [ext_resource type="Texture2D" uid="uid://c7bjncvhvpmhn" path="res://Textures/ExperiencePickup.png" id="2_i1m3w"]
@@ -16,12 +17,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ica7q")
 script = ExtResource("1_2gryq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
+offset_top = 9.0
 offset_right = 244.0
-offset_bottom = 51.0
+offset_bottom = 60.0
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(9, 0)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2

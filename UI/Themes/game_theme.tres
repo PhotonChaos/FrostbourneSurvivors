@@ -1,7 +1,51 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cjnv40jx5s0rt"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cjnv40jx5s0rt"]
 
 [ext_resource type="FontFile" uid="uid://crij2k3sbj5ko" path="res://UI/Fonts/SparklyFontRegular-zyA3.ttf" id="1_elvr8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4axcr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00qaf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iar38"]
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+border_width_top = 14
+border_width_bottom = 6
+border_color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ic5r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtnou"]
+content_margin_top = 7.0
 
 [resource]
 default_font = ExtResource("1_elvr8")
 default_font_size = 16
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/styles/focus = SubResource("StyleBoxFlat_4axcr")
+Button/styles/hover = SubResource("StyleBoxFlat_00qaf")
+Button/styles/normal = SubResource("StyleBoxFlat_iar38")
+Button/styles/pressed = SubResource("StyleBoxFlat_0ic5r")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 30
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/styles/normal = SubResource("StyleBoxEmpty_dtnou")

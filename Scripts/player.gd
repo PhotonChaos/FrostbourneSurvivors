@@ -30,9 +30,19 @@ func shoot():
 	
 	proj.damage_source = HurtBox.DamageSource.PLAYER
 	proj.damage = 3
-	proj.speed = 70
+	proj.speed = 130
 	
 	get_parent().add_child(proj_node)
+
+func attack1():
+	pass
+	
+func attack2():
+	pass
+	
+func attack3():
+	pass
+
 
 func gain_xp(experience: int) -> void:
 	if experience >= 0:
