@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="2_otki5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x4cec"]
-line_spacing = 50.0
+line_spacing = 60.0
 font_size = 64
 font_color = Color(0.603922, 0.784314, 0.803922, 1)
 shadow_size = 4
@@ -46,21 +46,25 @@ label_settings = SubResource("LabelSettings_x4cec")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+[node name="Menu" type="VBoxContainer" parent="ColorRect"]
 layout_mode = 0
 offset_left = 272.0
 offset_top = 181.0
 offset_right = 376.0
 offset_bottom = 275.0
 
-[node name="Button" type="Button" parent="ColorRect/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="ColorRect/Menu"]
 layout_mode = 2
 text = "Start Game"
 
-[node name="Button2" type="Button" parent="ColorRect/VBoxContainer"]
+[node name="SaveLoadButton" type="Button" parent="ColorRect/Menu"]
+layout_mode = 2
+text = "View Saves"
+
+[node name="OptionsButton" type="Button" parent="ColorRect/Menu"]
 layout_mode = 2
 text = "Options"
 
-[node name="Button3" type="Button" parent="ColorRect/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="ColorRect/Menu"]
 layout_mode = 2
 text = "Quit"
