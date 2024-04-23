@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+signal pause
 signal game_over
 signal health_changed(health: int)
 signal xp_changed(xp: int)
@@ -11,7 +12,11 @@ signal xp_changed(xp: int)
 @export var inv_time: float = 1.0
 @export var shot_cooldown = 0.1
 
-@onready var health = starting_health
+@export_subgroup("Cheats")
+@export var cheats: bool = false
+
+@onready var hurtbox: HurtBox = $HurtBox
+
 @onready var itime = inv_time
 @onready var xp = 0
 @onready var cooldown: float = 0
@@ -19,6 +24,9 @@ signal xp_changed(xp: int)
 var level = 0
 var target_velocity = Vector2.ZERO
 var knife = preload("res://Scenes/flame_knife.tscn")
+
+## This is here so that we don't immediately pause again when we unpause the game via hotkey
+var just_paused = false  
 
 func shoot():
 	var dir = (get_global_mouse_position() - global_position).normalized()
@@ -43,6 +51,19 @@ func attack2():
 func attack3():
 	pass
 
+func reset():
+	hurtbox.health = starting_health
+	cooldown = 0
+	itime = inv_time
+	xp = 0
+	
+	health_changed.emit(hurtbox.health)
+	xp_changed.emit(xp)
+	
+	position = Vector2(302, 145)
+
+func gain_hp(health: int) -> void:
+	hurtbox.heal(health)
 
 func gain_xp(experience: int) -> void:
 	if experience >= 0:
@@ -64,16 +85,27 @@ func _on_hurt_box_health_updated(health: int) -> void:
 func _ready() -> void:
 	xp_changed.emit(xp)
 
+
 func _process(delta: float) -> void:
 	if cooldown > 0: cooldown = max(0, cooldown - delta)
 	if itime > 0: itime = max(0, itime - delta)
 		
-	if Input.is_action_pressed("attack") && cooldown == 0:
+	if Input.is_action_pressed("attack1") && cooldown == 0:
 		cooldown += shot_cooldown
 		shoot()
 		
+	if cheats and Input.is_action_just_pressed("attack"):
+		gain_hp(2)
+
 
 func _physics_process(_delta: float) -> void:
+	if not just_paused and Input.is_action_just_pressed("escape"):
+		just_paused = true
+		pause.emit()
+		return
+		
+	if just_paused: just_paused = false
+	
 	var direction = Vector2.ZERO
 	
 	if Input.is_action_pressed("move_up"):

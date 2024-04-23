@@ -6,6 +6,9 @@ extends Area2D
 
 @onready var animator: AnimatedSprite2D = $AnimatedSprite2D
 
+func _ready():
+	add_to_group("pickups")
+
 func _on_area_entered(area: Area2D) -> void:
 	var hb = area as HurtBox
 	

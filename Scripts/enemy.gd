@@ -14,7 +14,8 @@ var hp_pickup_prefab = preload("res://Scenes/heart_pickup.tscn")
 
 @export var speed = 40
 @export var health = 10
-@export var attack = 2
+@export var attack = 1
+@export var health_drop_chance = 0.01
 # @export var type = EnemyType.BUNNY;
 
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -48,7 +49,7 @@ func _physics_process(delta: float) -> void:
 
 func _exit_tree() -> void:
 	pass
-	#print_rich("[color=pink]ENEMY SLAIN[/color]")
+
 
 func _on_hurt_box_health_depleted() -> void:
 	set_alive(false)
@@ -61,7 +62,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	else:
 		var pickup: Pickup
 		
-		if randf() < 0.05:
+		if randf() < health_drop_chance:
 			pickup = hp_pickup_prefab.instantiate()
 		else:
 			pickup = xp_pickup_prefab.instantiate()

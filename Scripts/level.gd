@@ -30,6 +30,9 @@ func spawn_wave(count: int) -> void:
 		
 		spawn_enemy(spawn_pos)
 
+func set_paused(val: bool):
+	get_tree().paused = val
+
 func start():
 	enemy_spawn_timer.start()
 	print_rich("[color=green][b]LEVEL START[/b][/color]")
@@ -43,3 +46,22 @@ func _on_projectile_boundary_area_exited(area: Area2D) -> void:
 
 func _on_enemy_spawn_timer_timeout():
 	spawn_wave(spawn_count)
+
+
+func _on_gameplay_hud_unpause():
+	set_paused(false)
+
+func _on_gameplay_hud_restart():
+	# Order is important here, to avoid hitbox nonsense
+	get_tree().call_group("nightmares", "queue_free")  # Remove all nightmares
+	get_tree().call_group("pickups", "queue_free")  # Remove all pickups
+	get_tree().call_group("projectiles", "queue_free")  # Remove all projectiles
+	player.reset()  # Reset the player
+
+	set_paused(false)
+
+func _on_player_pause():
+	set_paused(true)
+
+func _on_player_game_over():
+	set_paused(true)

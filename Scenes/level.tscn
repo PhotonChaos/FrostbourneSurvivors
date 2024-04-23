@@ -26,6 +26,7 @@ size = Vector2(7, 360)
 script = ExtResource("1_qerx1")
 
 [node name="GameplayHud" parent="." instance=ExtResource("2_8eh6v")]
+process_mode = 3
 z_index = 1
 anchors_preset = 0
 anchor_right = 0.0
@@ -37,9 +38,9 @@ grow_vertical = 1
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_ke4tv")]
 position = Vector2(302, 145)
+cheats = true
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
 
 [node name="ProjectileBoundary" type="Area2D" parent="."]
 editor_description = "This shouldn't be present on any layer. It should observe objects on layer 3."
@@ -73,8 +74,13 @@ shape = SubResource("RectangleShape2D_4h0s4")
 position = Vector2(643.5, 180)
 shape = SubResource("RectangleShape2D_hqxek")
 
+[connection signal="restart" from="GameplayHud" to="." method="_on_gameplay_hud_restart"]
+[connection signal="unpause" from="GameplayHud" to="." method="_on_gameplay_hud_unpause"]
+[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="game_over" from="Player" to="GameplayHud" method="_on_player_game_over"]
 [connection signal="health_changed" from="Player" to="GameplayHud" method="_on_player_health_changed"]
+[connection signal="pause" from="Player" to="." method="_on_player_pause"]
+[connection signal="pause" from="Player" to="GameplayHud" method="_on_player_pause"]
 [connection signal="xp_changed" from="Player" to="GameplayHud" method="_on_player_xp_changed"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="area_exited" from="ProjectileBoundary" to="." method="_on_projectile_boundary_area_exited"]

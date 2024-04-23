@@ -12,6 +12,7 @@ var velocity: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("projectiles")
 	velocity = Vector2.from_angle(parent.rotation) * speed
 
 func _physics_process(delta):
