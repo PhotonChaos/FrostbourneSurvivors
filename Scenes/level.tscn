@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://dna6cjc6sk84x"]
+
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_qerx1"]
+[ext_resource type="PackedScene" uid="uid://dmh5img4tdqc1" path="res://Scenes/gameplay_hud.tscn" id="2_8eh6v"]
+[ext_resource type="PackedScene" uid="uid://pso4du5pld81" path="res://Scenes/Player.tscn" id="3_ke4tv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fxs7"]
+size = Vector2(683, 396)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_aio13"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqgs4"]
+size = Vector2(7, 365)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3srdy"]
+size = Vector2(654, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h0s4"]
+size = Vector2(647, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqxek"]
+size = Vector2(7, 360)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_qerx1")
+
+[node name="GameplayHud" parent="." instance=ExtResource("2_8eh6v")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("3_ke4tv")]
+position = Vector2(302, 145)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="ProjectileBoundary" type="Area2D" parent="."]
+editor_description = "This shouldn't be present on any layer. It should observe objects on layer 3."
+visible = false
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileBoundary"]
+position = Vector2(323.5, 180)
+shape = SubResource("RectangleShape2D_5fxs7")
+debug_color = Color(0.964706, 0, 0.486275, 0.0588235)
+
+[node name="PlayerBoundary" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_aio13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(-3.5, 182.5)
+shape = SubResource("RectangleShape2D_gqgs4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(320, -2.5)
+shape = SubResource("RectangleShape2D_3srdy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(323.5, 362.5)
+shape = SubResource("RectangleShape2D_4h0s4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(643.5, 180)
+shape = SubResource("RectangleShape2D_hqxek")
+
+[connection signal="game_over" from="Player" to="GameplayHud" method="_on_player_game_over"]
+[connection signal="health_changed" from="Player" to="GameplayHud" method="_on_player_health_changed"]
+[connection signal="xp_changed" from="Player" to="GameplayHud" method="_on_player_xp_changed"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="area_exited" from="ProjectileBoundary" to="." method="_on_projectile_boundary_area_exited"]
