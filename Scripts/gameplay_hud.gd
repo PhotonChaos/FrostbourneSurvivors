@@ -12,11 +12,6 @@ func _ready():
 	game_over_rect.set_visible(false)
 	pause_menu.set_visible(false)
 
-func _process(delta):
-	if pause_menu.visible and Input.is_action_just_pressed("escape"):
-		pause_menu.set_visible(false)
-		unpause.emit()
-
 ################
 ## Player Signals
 
@@ -45,11 +40,9 @@ func _on_restart_button_pressed():
 	restart.emit()
 
 
-func _on_resume_button_pressed():
-	pause_menu.set_visible(false)
-	unpause.emit()
-
-
 func _on_quit_button_pressed():
 	get_tree().quit()
 
+
+func _on_pause_rect_unpause():
+	unpause.emit()

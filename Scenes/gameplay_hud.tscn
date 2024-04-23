@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmh5img4tdqc1"]
+[gd_scene load_steps=10 format=3 uid="uid://dmh5img4tdqc1"]
 
 [ext_resource type="Script" path="res://Scripts/gameplay_hud.gd" id="1_2gryq"]
 [ext_resource type="Theme" uid="uid://cjnv40jx5s0rt" path="res://UI/Themes/game_theme.tres" id="1_ica7q"]
 [ext_resource type="FontFile" uid="uid://crij2k3sbj5ko" path="res://UI/Fonts/SparklyFontRegular-zyA3.ttf" id="1_nucyl"]
 [ext_resource type="Texture2D" uid="uid://co674v4xwrakv" path="res://Textures/HeartPickup.png" id="1_uq7e6"]
 [ext_resource type="Texture2D" uid="uid://c7bjncvhvpmhn" path="res://Textures/ExperiencePickup.png" id="2_i1m3w"]
+[ext_resource type="Script" path="res://Scenes/pause_menu.gd" id="6_0un1f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qnf5d"]
 font = ExtResource("1_nucyl")
@@ -68,6 +69,7 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="GameOver" type="ColorRect" parent="."]
+process_mode = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -119,6 +121,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
 [node name="PauseRect" type="ColorRect" parent="."]
+process_mode = 2
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -133,6 +136,7 @@ offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.117647, 0.117647, 0.117647, 1)
+script = ExtResource("6_0un1f")
 
 [node name="Label" type="Label" parent="PauseRect"]
 layout_mode = 1
@@ -168,5 +172,6 @@ text = "Quit"
 
 [connection signal="pressed" from="GameOver/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="PauseRect/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="unpause" from="PauseRect" to="." method="_on_pause_rect_unpause"]
+[connection signal="pressed" from="PauseRect/VBoxContainer/ResumeButton" to="PauseRect" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
