@@ -12,6 +12,7 @@ A game about surviving in the Frostbourne Wilds. This is from the Remagica TTRPG
 - [x] Enemies can be hurt by player shots
 - [x] Enemies drop pickups
 - [ ] Pickups restore health / mana / XP to the player
+- [ ] User can pause/resume the game
 
 ## Alpha Requirements
 - [ ] User can start level from main menu

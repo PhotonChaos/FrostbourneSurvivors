@@ -6,7 +6,7 @@ extends Node2D
 
 @export_subgroup("Enemy Spawning")
 ## Min and max distance from the player enemies can spawn
-@export var distance_range: Vector2 = Vector2(40, 50)
+@export var distance_range: Vector2 = Vector2(120, 150)
 
 ## Number of enemies per wave to spawn
 @export var spawn_count = 10
@@ -30,15 +30,12 @@ func spawn_wave(count: int) -> void:
 		
 		spawn_enemy(spawn_pos)
 
-
 func start():
-	# Called when the level should start playing
-	enemy_spawn_timer.set_paused(true)
-	
+	enemy_spawn_timer.start()
 	print_rich("[color=green][b]LEVEL START[/b][/color]")
 
 func _ready():
-	enemy_spawn_timer.set_paused(true)
+	start()
 
 func _on_projectile_boundary_area_exited(area: Area2D) -> void:
 	area.get_parent().queue_free()

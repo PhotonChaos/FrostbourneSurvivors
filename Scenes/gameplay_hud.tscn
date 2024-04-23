@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmh5img4tdqc1"]
+[gd_scene load_steps=9 format=3 uid="uid://dmh5img4tdqc1"]
 
 [ext_resource type="Script" path="res://Scripts/gameplay_hud.gd" id="1_2gryq"]
 [ext_resource type="Theme" uid="uid://cjnv40jx5s0rt" path="res://UI/Themes/game_theme.tres" id="1_ica7q"]
@@ -14,6 +14,9 @@ font_size = 32
 line_spacing = 0.0
 font_size = 32
 font_color = Color(1, 0.545098, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5t5ea"]
+font_size = 32
 
 [node name="GameplayHud" type="Control"]
 custom_minimum_size = Vector2(640, 360)
@@ -66,7 +69,6 @@ stretch_mode = 4
 
 [node name="GameOver" type="ColorRect" parent="."]
 visible = false
-z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -107,4 +109,53 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Try Again"
 
+[node name="PauseRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -108.0
+offset_right = 98.5
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[node name="Label" type="Label" parent="PauseRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 90.0
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_5t5ea")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.5
+offset_top = -95.0
+offset_right = 32.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ResumeButton" type="Button" parent="PauseRect/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="PauseRect/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
 [connection signal="pressed" from="GameOver/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseRect/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

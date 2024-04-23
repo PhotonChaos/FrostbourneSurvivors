@@ -26,6 +26,7 @@ size = Vector2(7, 360)
 script = ExtResource("1_qerx1")
 
 [node name="GameplayHud" parent="." instance=ExtResource("2_8eh6v")]
+z_index = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -38,7 +39,7 @@ grow_vertical = 1
 position = Vector2(302, 145)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 3.0
 
 [node name="ProjectileBoundary" type="Area2D" parent="."]
 editor_description = "This shouldn't be present on any layer. It should observe objects on layer 3."
