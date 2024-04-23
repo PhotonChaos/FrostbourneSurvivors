@@ -3,10 +3,10 @@ A game about surviving in the Frostbourne Wilds. This is from the Remagica TTRPG
 
 # Plan
 ## Gameplay Loop
-
+???
 ## Minimum Playable State
 - [x] Player can move and shoot
-- [ ] Player can die, with option to restart or quit
+- [x] Player can die, with option to restart or quit
 - [ ] Player has at least one alternate shot with a cooldown
 - [ ] Enemies spawn in reasonable ways
 - [x] Enemies can be hurt by player shots
@@ -85,6 +85,11 @@ Wind mage, physical brawler, dodger
   - Lasts for X/10 seconds
 
 # Technical Info
+## Tools Used
+- Godot: Game Engine + code editor
+- Aseprite: Sprite art
+- Piskel: Sprite art + animation
+- VSCode: Code editor + Git GUI
 ## Collision Layers
 
 | Collision Layer | Objects Present                                            |
