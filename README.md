@@ -38,6 +38,7 @@ A game about surviving in the Frostbourne Wilds. This is from the Remagica TTRPG
 - Should XP be orb-based, or kill based?
 - What is the win condition?
 - What is the end goal?
+- Should X spells be denoted by a bool in the structure? This could allow for some spells to have a bonus to X, or an extra cost to X
 ## Controls
 - Spacebar: Spell 2 (OR DASH)
 - Shift: Dash (OR SPELL 2)
@@ -100,6 +101,28 @@ Wind mage, physical brawler, dodger
 | 4               | Pickups                                                    |
 | 9               | Objects which should be deleted when they go out of bounds |
 
+## Structures
+### Attack Specification
+This is used to tell a Player the important info about an attack
+- Cooldown: float
+  - Cooldown in seconds
+- Mana: int
+  - -1 if it's an X spell
+  - Mana cost per usage of the spell
+- Warmup: float
+  - Build-up time before a spell casts
+  - Should this be a thing? Maybe just used sparingly.
+- Attack asset location
+  - This specification needs to tell the player which scene it should spawn to start the attack
+
+## Attack Class
+This class goes on the root node for the scene with the actual attack logic. Each attack extends the Attack base class. Maybe could go with a generic base if there's a lot of similar attacks.
+
+The constructor has the following parameters:
+- Direction: Vector2
+  - The direction the player is facing 
+  - Usually faces towards the mouse, but also works for controller support
+- List of modifiers?
 
 # Credits 
 - ClariseTG, for the Remagica TTRPG this game is based on
