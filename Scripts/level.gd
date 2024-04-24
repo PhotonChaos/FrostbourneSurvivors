@@ -41,7 +41,7 @@ func _ready():
 	start()
 
 func _on_projectile_boundary_area_exited(area: Area2D) -> void:
-	area.get_parent().queue_free()
+	area.queue_free()
 
 
 func _on_enemy_spawn_timer_timeout():

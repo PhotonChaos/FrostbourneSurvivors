@@ -24,11 +24,13 @@ signal xp_changed(xp: int)
 var level = 0
 var target_velocity = Vector2.ZERO
 var knife = preload("res://Scenes/flame_knife.tscn")
+var flame_blast = preload("res://Scenes/flame_blast.tscn")
 
 ## This is here so that we don't immediately pause again when we unpause the game via hotkey
 var just_paused = false  
 
-func shoot():
+
+func attack1():
 	var dir = (get_global_mouse_position() - global_position).normalized()
 	var proj_node = knife.instantiate()
 	var proj: Projectile = proj_node.get_node(^"Projectile")
@@ -41,12 +43,11 @@ func shoot():
 	proj.speed = 130
 	
 	get_parent().add_child(proj_node)
-
-func attack1():
-	pass
 	
 func attack2():
-	pass
+	var blast_node: Node2D = flame_blast.instantiate()
+	blast_node.global_position = global_position
+	get_parent().add_child(blast_node)
 	
 func attack3():
 	pass
@@ -92,10 +93,13 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_pressed("attack1") && cooldown == 0:
 		cooldown += shot_cooldown
-		shoot()
+		attack1()
 		
-	if cheats and Input.is_action_just_pressed("attack"):
-		gain_hp(2)
+	if Input.is_action_just_pressed("attack"):
+		attack2()
+		
+	if Input.is_action_just_pressed("attack2"):
+		attack3()
 
 
 func _physics_process(_delta: float) -> void:

@@ -104,6 +104,9 @@ Wind mage, physical brawler, dodger
 ## Structures
 ### Attack Specification
 This is used to tell a Player the important info about an attack
+- Name: String
+  - The attack name
+  - Maybe a description?
 - Cooldown: float
   - Cooldown in seconds
 - Mana: int

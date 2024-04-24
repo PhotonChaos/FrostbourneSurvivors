@@ -73,6 +73,8 @@ shape = SubResource("RectangleShape2D_4h0s4")
 position = Vector2(643.5, 180)
 shape = SubResource("RectangleShape2D_hqxek")
 
+[connection signal="child_entered_tree" from="." to="GameplayHud" method="_on_level_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="GameplayHud" method="_on_level_child_exiting_tree"]
 [connection signal="restart" from="GameplayHud" to="." method="_on_gameplay_hud_restart"]
 [connection signal="unpause" from="GameplayHud" to="." method="_on_gameplay_hud_unpause"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]

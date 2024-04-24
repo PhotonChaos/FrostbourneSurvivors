@@ -15,6 +15,9 @@ func _ready():
 	add_to_group("projectiles")
 	velocity = Vector2.from_angle(parent.rotation) * speed
 
+func _exit_tree():
+	get_parent().queue_free()
+
 func _physics_process(delta):
 	parent.position += velocity * delta
 
