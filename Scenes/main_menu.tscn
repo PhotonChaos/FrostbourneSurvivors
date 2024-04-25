@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvhp3edqcjvsa"]
 
 [ext_resource type="Theme" uid="uid://cjnv40jx5s0rt" path="res://UI/Themes/game_theme.tres" id="1_um2ic"]
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="2_otki5"]
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="2_otki5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x4cec"]
 line_spacing = 60.0

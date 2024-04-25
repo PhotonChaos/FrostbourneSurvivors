@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="AttackStats" load_steps=2 format=3 uid="uid://d0ifottlj40tt"]
-
-[ext_resource type="Script" path="res://Scripts/attack_stats.gd" id="1_71qwg"]
-
-[resource]
-script = ExtResource("1_71qwg")
-attack_name = "Flaming Knife"
-damage = 4
-speed = 70

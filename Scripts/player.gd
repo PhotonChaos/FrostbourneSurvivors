@@ -12,6 +12,11 @@ signal xp_changed(xp: int)
 @export var inv_time: float = 1.0
 @export var shot_cooldown = 0.1
 
+@export_subgroup("Attacks")
+@export var primary_attack: AttackStats
+@export var special_attack_1: AttackStats
+@export var special_attack_2: AttackStats
+
 @export_subgroup("Cheats")
 @export var cheats: bool = false
 
@@ -31,18 +36,9 @@ var just_paused = false
 
 
 func attack1():
-	var dir = (get_global_mouse_position() - global_position).normalized()
-	var proj_node = knife.instantiate()
-	var proj: Projectile = proj_node.get_node(^"Projectile")
-
-	proj_node.global_position = global_position + dir * 10
-	proj_node.rotation = dir.angle() 
-	
-	proj.damage_source = HurtBox.DamageSource.PLAYER
-	proj.damage = 3
-	proj.speed = 130
-	
-	get_parent().add_child(proj_node)
+	# TODO: Make this cleaner.
+	if $Attack1 != null:
+		$Attack1.execute((get_global_mouse_position() - global_position).normalized(), 0)
 	
 func attack2():
 	var blast_node: Node2D = flame_blast.instantiate()
@@ -84,6 +80,27 @@ func _on_hurt_box_health_updated(health: int) -> void:
 # Builtins
 
 func _ready() -> void:
+	if primary_attack.attack != null:
+		var _primary_node: Node2D = load(primary_attack.attack).instantiate() 
+		
+		_primary_node.name = "Attack1"
+		add_child(_primary_node)
+		
+	
+	if special_attack_1.attack != null:
+		var _special_node: Node2D = load(special_attack_1.attack).instantiate() 
+		
+		_special_node.name = "Attack2"
+		add_child(_special_node)
+		
+	
+	if special_attack_2.attack != null:
+		var _special_node: Node2D = load(special_attack_2.attack).instantiate()
+		
+		_special_node.name = "Attack3"
+		add_child(_special_node)
+	
+	
 	xp_changed.emit(xp)
 
 
