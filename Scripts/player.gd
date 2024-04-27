@@ -36,17 +36,16 @@ var just_paused = false
 
 
 func attack1():
-	# TODO: Make this cleaner.
 	if $Attack1 != null:
 		$Attack1.execute((get_global_mouse_position() - global_position).normalized(), 0)
 	
 func attack2():
-	var blast_node: Node2D = flame_blast.instantiate()
-	blast_node.global_position = global_position
-	get_parent().add_child(blast_node)
+	if $Attack2 != null:
+		$Attack2.execute((get_global_mouse_position() - global_position).normalized(), 0)
 	
 func attack3():
-	pass
+	if $Attack3 != null:
+		$Attack3.execute((get_global_mouse_position() - global_position).normalized(), 0)
 
 func reset():
 	hurtbox.health = starting_health
@@ -80,21 +79,21 @@ func _on_hurt_box_health_updated(health: int) -> void:
 # Builtins
 
 func _ready() -> void:
-	if primary_attack.attack != null:
+	if primary_attack != null and primary_attack.attack != null:
 		var _primary_node: Node2D = load(primary_attack.attack).instantiate() 
 		
 		_primary_node.name = "Attack1"
 		add_child(_primary_node)
 		
 	
-	if special_attack_1.attack != null:
+	if special_attack_1 != null and special_attack_1.attack != null:
 		var _special_node: Node2D = load(special_attack_1.attack).instantiate() 
 		
 		_special_node.name = "Attack2"
 		add_child(_special_node)
 		
 	
-	if special_attack_2.attack != null:
+	if special_attack_2 != null and special_attack_2.attack != null:
 		var _special_node: Node2D = load(special_attack_2.attack).instantiate()
 		
 		_special_node.name = "Attack3"

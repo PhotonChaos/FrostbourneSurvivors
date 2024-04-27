@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vt8dgbf2r0hc"]
+
+[ext_resource type="Script" path="res://Scripts/Attacks/attack_flame_blast.gd" id="1_kgkkb"]
+
+[node name="AttackFlameKnife" type="Node2D"]
+script = ExtResource("1_kgkkb")
+damage = 30

@@ -1,3 +1,4 @@
+class_name AttackFlameKnife
 extends Attack
 
 @export var damage: int
