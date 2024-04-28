@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dna6cjc6sk84x"]
+[gd_scene load_steps=11 format=3 uid="uid://dna6cjc6sk84x"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_qerx1"]
 [ext_resource type="PackedScene" uid="uid://dmh5img4tdqc1" path="res://Scenes/gameplay_hud.tscn" id="2_8eh6v"]
 [ext_resource type="PackedScene" uid="uid://pso4du5pld81" path="res://Scenes/Player.tscn" id="3_ke4tv"]
+[ext_resource type="Resource" uid="uid://lst3du7kam8n" path="res://Resources/Attacks/attack_flame_blast.tres" id="4_iwvvp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fxs7"]
 size = Vector2(683, 396)
@@ -37,6 +38,7 @@ grow_vertical = 1
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_ke4tv")]
 position = Vector2(302, 145)
+special_attack_1 = ExtResource("4_iwvvp")
 cheats = true
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]

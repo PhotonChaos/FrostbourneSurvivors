@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackFlameBlast" load_steps=2 format=3 uid="uid://lst3du7kam8n"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Attacks/attack_flame_blast.gd" id="1_ktx2n"]
+
+[resource]
+script = ExtResource("1_ktx2n")
+damage = 300
+flame_blast_scene = "res://Scenes/flame_blast.tscn"
+name = "Flame Blast"
+description = "Boom!"
+mana_cost = 25
+cooldown = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmh5img4tdqc1"]
+[gd_scene load_steps=13 format=3 uid="uid://dmh5img4tdqc1"]
 
 [ext_resource type="Theme" uid="uid://cjnv40jx5s0rt" path="res://UI/Themes/game_theme.tres" id="1_ica7q"]
 [ext_resource type="FontFile" uid="uid://crij2k3sbj5ko" path="res://UI/Fonts/SparklyFontRegular-zyA3.ttf" id="1_nucyl"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/UI/gameplay_hud.gd" id="2_uuurp"]
 [ext_resource type="Texture2D" uid="uid://bri7u5js467xo" path="res://Textures/Effects/GlowKnife.png" id="6_arwel"]
 [ext_resource type="Script" path="res://Scripts/UI/pause_menu.gd" id="7_xnut4"]
+[ext_resource type="Texture2D" uid="uid://xhnq0ba80xdp" path="res://Textures/Attacks/AttackFrame.png" id="8_nccqk"]
+[ext_resource type="Texture2D" uid="uid://g7e56c656olx" path="res://Textures/Attacks/AttackFlameKnife.png" id="9_uppv8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qnf5d"]
 font = ExtResource("1_nucyl")
@@ -184,6 +186,51 @@ text = "Resume"
 [node name="QuitButton" type="Button" parent="PauseRect/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="AttackContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -83.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AttackContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="AttackContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_nccqk")
+expand_mode = 2
+
+[node name="Control" type="Control" parent="AttackContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="AttackContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_nccqk")
+expand_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="AttackContainer/HBoxContainer"]
+layout_mode = 2
+fill_mode = 3
+texture_under = ExtResource("9_uppv8")
+texture_over = ExtResource("8_nccqk")
+texture_progress = ExtResource("9_uppv8")
+tint_under = Color(0.466667, 0.466667, 0.466667, 1)
+
+[node name="Control" type="Control" parent="AttackContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
 [connection signal="pressed" from="GameOver/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

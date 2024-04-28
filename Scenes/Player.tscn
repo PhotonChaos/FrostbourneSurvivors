@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://pso4du5pld81"]
+[gd_scene load_steps=6 format=3 uid="uid://pso4du5pld81"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_eok7b"]
 [ext_resource type="Texture2D" uid="uid://b4r4aryq1vu8b" path="res://Textures/icon.svg" id="2_jbaww"]
+[ext_resource type="Resource" uid="uid://ca8xeqoeaigjx" path="res://Resources/Attacks/attack_flame_knife.tres" id="2_yifn1"]
 [ext_resource type="PackedScene" uid="uid://kkq4d6tpedy7" path="res://Scenes/hurt_box.tscn" id="3_ybmhl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjdv4"]
@@ -12,6 +13,7 @@ editor_description = "The collision mask and layer refer to the EnvironmentColli
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_eok7b")
+primary_attack = ExtResource("2_yifn1")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, 5.96046e-08)

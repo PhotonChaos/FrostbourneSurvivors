@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AttackFlameKnife" load_steps=2 format=3 uid="uid://ca8xeqoeaigjx"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Attacks/attack_flame_knife.gd" id="1_ke7s6"]
+
+[resource]
+script = ExtResource("1_ke7s6")
+damage = 10
+speed = 150.0
+knife_scene = "res://Scenes/flame_knife.tscn"
+name = "Flame Knife"
+description = "Linda stabs someone remotely"
+mana_cost = 0
+cooldown = 0.1
