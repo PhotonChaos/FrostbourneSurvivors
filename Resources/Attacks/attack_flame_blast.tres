@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="AttackFlameBlast" load_steps=2 format=3 uid="uid://lst3du7kam8n"]
+[gd_resource type="Resource" script_class="AttackFlameBlast" load_steps=3 format=3 uid="uid://lst3du7kam8n"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/Attacks/attack_flame_blast.gd" id="1_ktx2n"]
+[ext_resource type="Texture2D" uid="uid://bwk65m16qfibe" path="res://Textures/Attacks/AttackFlameBlast.png" id="2_cwr1x"]
 
 [resource]
 script = ExtResource("1_ktx2n")
@@ -10,3 +11,4 @@ name = "Flame Blast"
 description = "Boom!"
 mana_cost = 25
 cooldown = 1.0
+ui_icon = ExtResource("2_cwr1x")

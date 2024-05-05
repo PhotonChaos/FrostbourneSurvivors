@@ -14,7 +14,7 @@ extends Resource
 @export var cooldown: float
 
 ## The texture that will be displayed on the UI to represent the attack
-@export var ui_icon: Texture2D
+@export var ui_icon: Texture2D = preload("res://Textures/Attacks/AttackNoIcon.png")
 
 
 func _init(p_attack_name="UNKNOWN ATTACK", p_desc="IDK what this does", p_mana=1, p_cooldown=1, p_ui_icon=null) -> void:

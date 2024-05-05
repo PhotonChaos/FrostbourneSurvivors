@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="AttackFlameKnife" load_steps=2 format=3 uid="uid://ca8xeqoeaigjx"]
+[gd_resource type="Resource" script_class="AttackFlameKnife" load_steps=3 format=3 uid="uid://ca8xeqoeaigjx"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/Attacks/attack_flame_knife.gd" id="1_ke7s6"]
+[ext_resource type="Texture2D" uid="uid://g7e56c656olx" path="res://Textures/Attacks/AttackFlameKnife.png" id="2_vhfc5"]
 
 [resource]
 script = ExtResource("1_ke7s6")
@@ -11,3 +12,4 @@ name = "Flame Knife"
 description = "Linda stabs someone remotely"
 mana_cost = 0
 cooldown = 0.1
+ui_icon = ExtResource("2_vhfc5")

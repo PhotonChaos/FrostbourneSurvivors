@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bri7u5js467xo" path="res://Textures/Effects/GlowKnife.png" id="6_arwel"]
 [ext_resource type="Script" path="res://Scripts/UI/pause_menu.gd" id="7_xnut4"]
 [ext_resource type="Texture2D" uid="uid://xhnq0ba80xdp" path="res://Textures/Attacks/AttackFrame.png" id="8_nccqk"]
-[ext_resource type="Texture2D" uid="uid://g7e56c656olx" path="res://Textures/Attacks/AttackFlameKnife.png" id="9_uppv8"]
+[ext_resource type="Texture2D" uid="uid://cj2u51ukyca6j" path="res://Textures/Attacks/AttackNoIcon.png" id="8_t8nuk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qnf5d"]
 font = ExtResource("1_nucyl")
@@ -187,50 +187,47 @@ text = "Resume"
 layout_mode = 2
 text = "Quit"
 
-[node name="AttackContainer" type="VBoxContainer" parent="."]
+[node name="AttackContainer" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -179.0
-offset_top = -83.0
+offset_left = -132.0
+offset_top = -59.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
+columns = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AttackContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="AttackContainer"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect2" type="TextureRect" parent="AttackContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("8_nccqk")
-expand_mode = 2
-
-[node name="Control" type="Control" parent="AttackContainer/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="AttackContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("8_nccqk")
-expand_mode = 2
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="AttackContainer/HBoxContainer"]
-layout_mode = 2
+max_value = 16.0
+value = 16.0
 fill_mode = 3
-texture_under = ExtResource("9_uppv8")
+nine_patch_stretch = true
+texture_under = ExtResource("8_t8nuk")
 texture_over = ExtResource("8_nccqk")
-texture_progress = ExtResource("9_uppv8")
-tint_under = Color(0.466667, 0.466667, 0.466667, 1)
+texture_progress = ExtResource("8_t8nuk")
+tint_under = Color(0.266667, 0.266667, 0.266667, 1)
 
 [node name="Control" type="Control" parent="AttackContainer"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="AttackContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+max_value = 16.0
+value = 16.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("8_t8nuk")
+texture_over = ExtResource("8_nccqk")
+texture_progress = ExtResource("8_t8nuk")
+tint_under = Color(0.266667, 0.266667, 0.266667, 1)
 
 [connection signal="pressed" from="GameOver/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://cw70jwmbfo256"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Characters/character.gd" id="1_3l50o"]
+[ext_resource type="Resource" uid="uid://ca8xeqoeaigjx" path="res://Resources/Attacks/attack_flame_knife.tres" id="1_iy0wj"]
+[ext_resource type="Resource" uid="uid://lst3du7kam8n" path="res://Resources/Attacks/attack_flame_blast.tres" id="3_lrl1w"]
+
+[resource]
+resource_name = "Linda (Character)"
+script = ExtResource("1_3l50o")
+name = "Linda"
+bio = "The secretary of the Theodora guild. Has been arrested for several crimes, intends to commit many more. Uses fire, lots of mana but not a lot of health."
+max_health = 10
+max_mana = 200
+speed = 80
+primary_attack = ExtResource("1_iy0wj")
+special_attack_1 = ExtResource("3_lrl1w")
+special_attack_2 = ExtResource("3_lrl1w")

@@ -41,6 +41,9 @@ position = Vector2(302, 145)
 special_attack_1 = ExtResource("4_iwvvp")
 cheats = true
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 
 [node name="ProjectileBoundary" type="Area2D" parent="."]
@@ -79,6 +82,8 @@ shape = SubResource("RectangleShape2D_hqxek")
 [connection signal="child_exiting_tree" from="." to="GameplayHud" method="_on_level_child_exiting_tree"]
 [connection signal="restart" from="GameplayHud" to="." method="_on_gameplay_hud_restart"]
 [connection signal="unpause" from="GameplayHud" to="." method="_on_gameplay_hud_unpause"]
+[connection signal="attack_updated" from="Player" to="GameplayHud" method="_on_player_attack_updated"]
+[connection signal="cooldown_updated" from="Player" to="GameplayHud" method="_on_player_cooldown_updated"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="game_over" from="Player" to="GameplayHud" method="_on_player_game_over"]
 [connection signal="health_changed" from="Player" to="GameplayHud" method="_on_player_health_changed"]

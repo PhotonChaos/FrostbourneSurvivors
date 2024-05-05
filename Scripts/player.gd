@@ -5,6 +5,8 @@ signal pause
 signal game_over
 signal health_changed(health: int)
 signal xp_changed(xp: int)
+signal attack_updated(attack: Attack, index: int)
+signal cooldown_updated(time_left: float, initial_cooldown: float, index: int)
 
 @export var starting_health: int = 10
 @export var speed: int = 140
@@ -58,7 +60,7 @@ func reset():
 	cooldown2 = 0
 	cooldown3 = 0
 	itime = inv_time
-	xp = 0
+	xp = 200
 	
 	health_changed.emit(hurtbox.health)
 	xp_changed.emit(xp)
@@ -71,6 +73,20 @@ func gain_hp(health: int) -> void:
 func gain_xp(experience: int) -> void:
 	xp += experience
 	xp_changed.emit(xp)
+
+func update_cooldowns(delta: float):
+	if primary_attack != null and cooldown1 > 0: 
+		cooldown1 = max(0, cooldown1 - delta)
+		cooldown_updated.emit(cooldown1, primary_attack.cooldown, 0)
+		
+	if special_attack_1 != null and cooldown2 > 0: 
+		cooldown2 = max(0, cooldown2 - delta)
+		cooldown_updated.emit(cooldown2, special_attack_1.cooldown, 1)
+		
+	if special_attack_2 != null and cooldown3 > 0: 
+		cooldown3 = max(0, cooldown3 - delta)
+		cooldown_updated.emit(cooldown3, special_attack_2.cooldown, 2)
+		
 
 # ###########
 # Signals
@@ -85,14 +101,18 @@ func _on_hurt_box_health_updated(health: int) -> void:
 # Builtins
 
 func _ready() -> void:
+	xp = 200
 	xp_changed.emit(xp)
+	
+	var attacks = [primary_attack, special_attack_1, special_attack_2]
+	
+	for i in range(3):
+		if attacks[i] != null:
+			attack_updated.emit(attacks[i], i)
 
 
 func _process(delta: float) -> void:
-	if cooldown1 > 0: cooldown1 = max(0, cooldown1 - delta)
-	if cooldown2 > 0: cooldown2 = max(0, cooldown2 - delta)
-	if cooldown3 > 0: cooldown3 = max(0, cooldown3 - delta)
-
+	update_cooldowns(delta)
 	if itime > 0: itime = max(0, itime - delta)
 		
 	if Input.is_action_pressed("attack1") and primary_attack != null and cooldown1 == 0 and xp >= primary_attack.mana_cost:
@@ -116,7 +136,7 @@ func _physics_process(_delta: float) -> void:
 		just_paused = true
 		pause.emit()
 		return
-		
+	
 	if just_paused: just_paused = false
 	
 	var direction = Vector2.ZERO
